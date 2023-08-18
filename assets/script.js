@@ -1,3 +1,4 @@
+
 const slides = [
 	{
 		"image":"slide1.jpg",
@@ -23,68 +24,104 @@ const items = document.querySelectorAll('.banner-img img')
 const nbSlide = items.length; 
 const suivant = document.querySelector('#r')
 const precedent = document.querySelector('#l')
+
 let count = 0
 
-function slideSuivante(){
-	
-	
-
-		if(count < slides.length){
-			var active = document.querySelectorAll('active');
-
-			console.log("valeur initial", slides[count].image);
-			
-			items[count++].classList.add('active');
-			
-			
-		}
-	
-		else{
-			
-			items[count = 0]
-			active.classList.remove('active');
-		};
-	
-	
-}
+let img = document.querySelector('.banner-img')
 
 
 
 
-suivant.addEventListener('click', slideSuivante());
 
 
-function slidePrecedent(){
-	
-
-	if(count > slides.length){
-		console.log("valeur initial", slides[count].image)
+	// function slideSuivante(){
 		
+	// 	// console.log("valeur initial",img.src)
+	
+	// 	// img.src = slides[0]
+	// 	// console.log("valeur initial",img.src)
+	
+	// 		// if(count < nbSlide){
+	// 		// 	var active = document.querySelectorAll('active');
+	
+	// 		// 	console.log("valeur initial", slides[count].image);
+				
+	// 		// 	items[count].classList.add('active');
+	// 		// 	count++
+				
+	// 		// }
+		
+	// 		// else{
+	// 		// 	count = 0
+	// 		// 	items[count]
+	// 		// 	// items[count].style.display = 'none'
+				
+	// 		// 	// items.classList.remove('active');
+	// 		// };
+		
+		
+	// }
 
-		items[count--].classList.add('active');
-	} else {
-		slides[count = 0]
+
+	
+
+
+
+suivant.addEventListener('click', function(){  
+	if(count < slides.length){
+		
+		img.src = "./assets/images/slideshow/" + slides[count].image
+		count++
+	} else{
+		count = 0
 	}
 	
-}
+	console.log("valeur initial",img.src)
 
-precedent.addEventListener('click' , slidePrecedent())
-
-
-
-let dots = document.getElementsByClassName('dot');
-function showSlides(n){
 	
 
-	if(dots < slides.length){
-		dots[count].classList.add('.dot_selected');
+	
+	
+	
+
+
+});
+
+
+
+// function slidePrecedent(){
+	
+
+// 	if(count < slides.length){
 		
-	}
+// 		console.log("valeur initial", slides[count].image)
+		
+
+// 		// items[count].classList.add('active');
+// 	} else {
+// 		count = 0
+// 		items[count]
+// 	}
+	
+// }
+
+// precedent.addEventListener('click' , slidePrecedent())
+
+
+
+// let dots = document.getElementsByClassName('dot');
+// function showSlides(n){
+	
+
+// 	if(dots < slides.length){
+// 		dots[count].classList.add('.dot_selected');
+		
+// 	}
 	
 
 
-}
-dots.addEventListener('click', showSlides)
+// }
+// dots.addEventListener('click', showSlides)
 
 
 
