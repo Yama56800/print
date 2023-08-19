@@ -34,33 +34,6 @@ let img = document.querySelector('.banner-img')
 
 
 
-	// function slideSuivante(){
-		
-	// 	// console.log("valeur initial",img.src)
-	
-	// 	// img.src = slides[0]
-	// 	// console.log("valeur initial",img.src)
-	
-	// 		// if(count < nbSlide){
-	// 		// 	var active = document.querySelectorAll('active');
-	
-	// 		// 	console.log("valeur initial", slides[count].image);
-				
-	// 		// 	items[count].classList.add('active');
-	// 		// 	count++
-				
-	// 		// }
-		
-	// 		// else{
-	// 		// 	count = 0
-	// 		// 	items[count]
-	// 		// 	// items[count].style.display = 'none'
-				
-	// 		// 	// items.classList.remove('active');
-	// 		// };
-		
-		
-	// }
 
 
 	
@@ -69,8 +42,14 @@ let img = document.querySelector('.banner-img')
 
 suivant.addEventListener('click', function(){  
 	if(count < slides.length){
+
+		let dot = document.querySelectorAll('.dot')
+		
+		dot[count].classList.remove('dot_selected');
+
 		
 		img.src = "./assets/images/slideshow/" + slides[count].image
+		
 		count++
 	} else{
 		count = 0
@@ -78,50 +57,69 @@ suivant.addEventListener('click', function(){
 	
 	console.log("valeur initial",img.src)
 
-	
+});
 
+precedent.addEventListener('click', function(){  
+	if(count < slides.length){
+		
+		img.src = "./assets/images/slideshow/" + slides[count].image
+		count--
+	} else{
+		count = 0
+	}
 	
-	
-	
-
+	console.log("valeur initial",img.src)
 
 });
 
 
 
-// function slidePrecedent(){
-	
 
-// 	if(count < slides.length){
+
+function dotmove(){
+	let dot = document.querySelectorAll('.dot')
+	
+	if(count < slides.length){
+		dot[count].classList.add('dot_selected')
 		
-// 		console.log("valeur initial", slides[count].image)
 		
-
-// 		// items[count].classList.add('active');
-// 	} else {
-// 		count = 0
-// 		items[count]
-// 	}
+	}
 	
-// }
+}
 
-// precedent.addEventListener('click' , slidePrecedent())
-
-
-
-// let dots = document.getElementsByClassName('dot');
-// function showSlides(n){
-	
-
-// 	if(dots < slides.length){
-// 		dots[count].classList.add('.dot_selected');
-		
-// 	}
-	
+suivant.addEventListener('click', dotmove)
 
 
-// }
-// dots.addEventListener('click', showSlides)
+
+
+
+point1 = document.querySelector('.point1')
+point1.addEventListener('click', function(){
+
+	img.src = "./assets/images/slideshow/" + slides[count = 0].image
+
+})
+
+point2 = document.querySelector('.point2')
+point2.addEventListener('click', function(){
+
+	img.src = "./assets/images/slideshow/" + slides[count = 1].image
+
+})
+
+point3 = document.querySelector('.point3')
+point3.addEventListener('click', function(){
+
+	img.src = "./assets/images/slideshow/" + slides[count = 2].image
+
+})
+
+point4 = document.querySelector('.point4')
+point4.addEventListener('click', function(){
+
+	img.src = "./assets/images/slideshow/" + slides[count = 3].image
+
+})
 
 
 
