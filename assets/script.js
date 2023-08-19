@@ -28,10 +28,13 @@ const precedent = document.querySelector('#l')
 let count = 1
 
 let img = document.querySelector('.banner-img')
+let text = document.querySelector('#banner p')
 
 
-//fleche suivante
-suivant.addEventListener('click', function(){  
+
+
+
+function diaponext(){  
 	if(count < slides.length){
 
 		let dot = document.querySelectorAll('.dot')
@@ -39,16 +42,35 @@ suivant.addEventListener('click', function(){
 		dot[count].classList.remove('dot_selected');
 
 		
+		text.innerHTML = slides[count].tagLine
+	
 		img.src = "./assets/images/slideshow/" + slides[count].image
 		
 		count++
+
 	} else{
 		count = 0
 	}
-	
+	console.log("valeur",text)
 	console.log("valeur initial",img.src)
+	
+}
 
-});
+setInterval(diaponext, 4000);
+setInterval(dotmove, 4000);
+
+
+//fleche suivante
+suivant.addEventListener('click',  diaponext);
+
+
+
+
+
+
+
+
+
 // fleche precedente
 precedent.addEventListener('click', function(){  
 	if(count < slides.length){
@@ -92,6 +114,7 @@ point1.addEventListener('click', function(){
 	
 	img.src = "./assets/images/slideshow/" + slides[count = 0].image
 dot[count].classList.add('dot_selected')
+text.innerHTML = slides[count].tagLine
 })
 
 point2 = document.querySelector('.point2')
@@ -99,6 +122,7 @@ point2.addEventListener('click', function(){
 	
 	img.src = "./assets/images/slideshow/" + slides[count = 1].image
 dot[count].classList.add('dot_selected')
+text.innerHTML = slides[count].tagLine
 })
 
 point3 = document.querySelector('.point3')
@@ -106,6 +130,7 @@ point3.addEventListener('click', function(){
 
 	img.src = "./assets/images/slideshow/" + slides[count = 2].image
 	dot[count].classList.add('dot_selected')
+	text.innerHTML = slides[count].tagLine
 })
 
 point4 = document.querySelector('.point4')
@@ -113,6 +138,7 @@ point4.addEventListener('click', function(){
 
 	img.src = "./assets/images/slideshow/" + slides[count = 3].image
 	dot[count].classList.add('dot_selected')
+	text.innerHTML = slides[count].tagLine
 })
 
 
