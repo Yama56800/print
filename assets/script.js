@@ -25,29 +25,24 @@ const nbSlide = items.length;
 const suivant = document.querySelector('#r')
 const precedent = document.querySelector('#l')
 
-let count = 1
+let count = 0
 
 let img = document.querySelector('.banner-img')
 let text = document.querySelector('#banner p')
+let dot = document.querySelectorAll('.dot')
 
 
 
 
-
-function diaponext(){  
+function next(){  
 	if(count < slides.length){
-
-		let dot = document.querySelectorAll('.dot')
 		
+		text.innerHTML = slides[count].tagLine;
+		img.src = "./assets/images/slideshow/" + slides[count].image; 
 		dot[count].classList.remove('dot_selected');
-
-		
-		text.innerHTML = slides[count].tagLine
+		count++;
+		dotmove(count = 0);
 	
-		img.src = "./assets/images/slideshow/" + slides[count].image
-		
-		count++
-
 	} else{
 		count = 0
 	}
@@ -56,16 +51,35 @@ function diaponext(){
 	
 }
 
-setInterval(diaponext, 4000);
-setInterval(dotmove, 4000);
-
 
 //fleche suivante
-suivant.addEventListener('click',  diaponext);
+suivant.addEventListener('click', function next(){  
+	if(count < slides.length){
+		dot[count].classList.remove('dot_selected');
+		count++;
+		dotmove();
+		text.innerHTML = slides[count].tagLine;
+		img.src = "./assets/images/slideshow/" + slides[count].image; 
+		
+		
+		
+	
+	} else{
+		count = 0
+		
+	}
+	console.log("valeur",text)
+	console.log("valeur initial",img.src)
+	
+} );
 
 
 
-
+document.addEventListener('DOMContentLoaded', function() {
+	
+    next();
+	 
+});
 
 
 
@@ -74,11 +88,13 @@ suivant.addEventListener('click',  diaponext);
 // fleche precedente
 precedent.addEventListener('click', function(){  
 	if(count < slides.length){
-		
-		img.src = "./assets/images/slideshow/" + slides[count].image
-		count--
+		dot[count].classList.remove('dot_selected');
+		count--;
+		dotmove();
+		text.innerHTML = slides[count].tagLine;
+		img.src = "./assets/images/slideshow/" + slides[count].image; 
 	} else{
-		count = 0
+		count = slides.length ;
 	}
 	
 	console.log("valeur initial",img.src)
@@ -88,7 +104,7 @@ precedent.addEventListener('click', function(){
 
 
 // ajoute le dot coché
-let dot = document.querySelectorAll('.dot')
+
 function dotmove(){
 	
 	
@@ -104,6 +120,7 @@ function dotmove(){
 }
 
 suivant.addEventListener('click', dotmove)
+
 
 
 
