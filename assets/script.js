@@ -21,7 +21,6 @@ const slides = [
 
 // objets
 const items = document.querySelectorAll('.banner-img img')
-const nbSlide = slides.length; 
 const suivant = document.querySelector('#r')
 const precedent = document.querySelector('#l')
 let count = 0
@@ -29,116 +28,49 @@ let img = document.querySelector('.banner-img')
 let text = document.querySelector('#banner p')
 let dot = document.querySelectorAll('.dot')
 
-function next(){  
-	if(count < slides.length){
-		
-		text.innerHTML = slides[count].tagLine;
-		img.src = "./assets/images/slideshow/" + slides[count].image; 
-		dot[count].classList.remove('dot_selected');
-		count++;
-		dotmove(count = 0);
-	
-	} else{
-		count = 0
+
+//afficher
+function afficherSlide() {
+	text.innerHTML = slides[count].tagLine;
+	img.src = "./assets/images/slideshow/" + slides[count].image;
+	dot[count].classList.add('dot_selected');
+  }
+  
+  // fleche suivante
+  suivant.addEventListener('click', function () {
+	dot[count].classList.remove('dot_selected');
+	if (count < slides.length -1) {
+	  count++;
+	} else {
+	  count = 0;
 	}
-	console.log("valeur",text)
-	console.log("valeur initial",img.src)
-	
-}
-
-//fleche suivante
-suivant.addEventListener('click', function next(){  
-	if(count < slides.length){
-		dot[count].classList.remove('dot_selected');
-		count++;
-		dotmove();
-		text.innerHTML = slides[count].tagLine;
-		img.src = "./assets/images/slideshow/" + slides[count].image; 
-		} else{
-		count = 0
-		}
-	console.log("valeur",text)
-	console.log("valeur initial",img.src)
-	
-} );
-
-document.addEventListener('DOMContentLoaded', function() {
-	
-    next();
-	 
-});
-
-// fleche precedente
-precedent.addEventListener('click', function(){  
-	if(count < slides.length){
-		dot[count].classList.remove('dot_selected');
-		if (count == 0){
-			count = slides.length -1;
-		}
-		else{
-			count --;
-		}
-		dotmove();
-		text.innerHTML = slides[count].tagLine;
-		img.src = "./assets/images/slideshow/" + slides[count].image; 
-	} 
-	console.log("valeur initial",img.src)
-});
-
-// ajoute le dot coché
-function dotmove(){
-	if(count < slides.length){
-		console.log(count,dot)
-		dot[count].classList.add('dot_selected')	
-	} else{
-		count = 0
+	afficherSlide();
+	console.log("valeur", text);
+	console.log("valeur initial", img.src);
+  });
+  
+  // fleche precedente
+  precedent.addEventListener('click', function () {
+	dot[count].classList.remove('dot_selected');
+	if (count > 0) {
+	  count--;
+	} else {
+	  count = slides.length -1;
 	}
-}
+	afficherSlide();
+	console.log("valeur initial", img.src);
+  });
+  
+  // ajoute le dot coché au clic du dot
+ 
+  for (let i = 0; i < dot.length; i++) {
+	dot[i].addEventListener('click', function() {
+	  dot[count].classList.remove('dot_selected');
+	  count = i;
+	  afficherSlide();
+	  console.log("valeur initial", img.src);
+	});
+  }
+  
 
-suivant.addEventListener('click', dotmove)
-
-// code qui permet que le dot sois coché au clic
-point1 = document.querySelector('.point1')
-point1.addEventListener('click', function(){
-
-	dot[count].classList.remove('dot_selected');	
-	count = 0
-	img.src = "./assets/images/slideshow/" + slides[count].image;
-	dot[count].classList.add('dot_selected');
-	text.innerHTML = slides[count].tagLine;
-})
-
-point2 = document.querySelector('.point2')
-point2.addEventListener('click', function(){
-	
-	dot[count].classList.remove('dot_selected');
-	count = 1
-	img.src = "./assets/images/slideshow/" + slides[count].image;
-	dot[count].classList.add('dot_selected');
-	text.innerHTML = slides[count].tagLine;
-})
-
-point3 = document.querySelector('.point3')
-point3.addEventListener('click', function(){
-	
-	dot[count].classList.remove('dot_selected');
-	count = 2
-	img.src = "./assets/images/slideshow/" + slides[count].image;
-	dot[count].classList.add('dot_selected');
-	text.innerHTML = slides[count].tagLine;
-})
-
-point4 = document.querySelector('.point4')
-point4.addEventListener('click', function(){
-	
-	dot[count].classList.remove('dot_selected');
-	count = 3
-	img.src = "./assets/images/slideshow/" + slides[count].image;
-	dot[count].classList.add('dot_selected');
-	text.innerHTML = slides[count].tagLine;
-})
-
-
-
-
-
+  afficherSlide();
