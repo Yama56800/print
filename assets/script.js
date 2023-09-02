@@ -31,14 +31,19 @@ let dot = document.querySelectorAll('.dot')
 
 //afficher
 function afficherSlide() {
-	text.innerHTML = slides[count].tagLine;
-	img.src = "./assets/images/slideshow/" + slides[count].image;
-	dot[count].classList.add('dot_selected');
+    text.innerHTML = slides[count].tagLine;
+    img.src = "./assets/images/slideshow/" + slides[count].image;
+    for (let i = 0; i < dot.length; i++) {
+        if (i === count) {
+            dot[i].classList.add('dot_selected');
+        } else {
+            dot[i].classList.remove('dot_selected');
+        }
+      }
   }
   
   // fleche suivante
   suivant.addEventListener('click', function () {
-	dot[count].classList.remove('dot_selected');
 	if (count < slides.length -1) {
 	  count++;
 	} else {
@@ -51,7 +56,6 @@ function afficherSlide() {
   
   // fleche precedente
   precedent.addEventListener('click', function () {
-	dot[count].classList.remove('dot_selected');
 	if (count > 0) {
 	  count--;
 	} else {
@@ -63,14 +67,14 @@ function afficherSlide() {
   
   // ajoute le dot coché au clic du dot
  
-  for (let i = 0; i < dot.length; i++) {
-	dot[i].addEventListener('click', function() {
-	  dot[count].classList.remove('dot_selected');
-	  count = i;
-	  afficherSlide();
-	  console.log("valeur initial", img.src);
-	});
-  }
+  dot.forEach(function(alldot, i) {
+    alldot.addEventListener('click', function() {
+        count = i; 
+        afficherSlide(); 
+
+		console.log("valeur initial", img.src);
+    });
+});
   
 
   afficherSlide();
